@@ -1,5 +1,5 @@
 """
-2d scatter plot
+3d scatter plot
 """
 
 import argparse
@@ -28,11 +28,25 @@ if args.s and args.e and args.s >= args.e:
     print('Error: range start must be smaller than range end.')
     exit(1)
 
-print(df.columns)
+print(df.shape)
 
 df = df.iloc[range(range_start, range_end)]
 
-sn.scatterplot(data=df, x='age', y='avg_glucose_level', hue='stroke')
+fig = plt.figure(figsize=(15, 8))
+ax = fig.add_subplot(111, projection='3d')
+df_stroke = df[df['stroke'] == 1]
+x_values = df_stroke['age']
+y_values = df_stroke['avg_glucose_level']
+z_values = df_stroke['bmi']
+ax.scatter(x_values, y_values, z_values, s=50, alpha=0.6, edgecolors='w')
+df_no_stroke = df[df['stroke'] == 0]
+x_values = df_no_stroke['age']
+y_values = df_no_stroke['avg_glucose_level']
+z_values = df_no_stroke['bmi']
+ax.scatter(x_values, y_values, z_values, c='red', s=50, alpha=0.6, edgecolors='w')
+ax.set_xlabel('Age (in years)')
+ax.set_ylabel('Average glucose level')
+ax.set_zlabel('BMI')
 
-plt.savefig("visualization_1.pdf")
+plt.savefig("visualization_2.pdf")
 plt.close()
