@@ -2,13 +2,12 @@
 
 - [ ] convert notebook to python file
 discussion report
-- [ ] write report part
 
 # Visualisation
 - [X] save graphs in files
-- [ ] find better second visualisation: parallel charts ?
+- [ ] find better visualisation_1: parallel charts 
 - [ ] customise command line options: chose features, chose axes, etc.
-- [ ] add units in axes
+- [X] add units in axes
 - [ ] add plot titles
 
 # Quantitative analysis
@@ -26,6 +25,15 @@ MLP
 - [X] train model
 - [X] evaluate model
 
-
 ## Unsupervised
 Clustering or PCA
+
+## Report
+- [X] dataset description
+- [ ] dataset analysis
+- [ ] data pre-processing description
+- [ ] explanations on the quantitative processing
+  - [ ] supervised
+  - [ ] unsupervised
+- [ ] explanations on the visualisation
+- [ ] comments on the results obtained.

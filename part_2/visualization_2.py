@@ -33,19 +33,24 @@ print(df.shape)
 df = df.iloc[range(range_start, range_end)]
 
 fig = plt.figure(figsize=(15, 8))
+
+# plot stroke patients
 ax = fig.add_subplot(111, projection='3d')
 df_stroke = df[df['stroke'] == 1]
 x_values = df_stroke['age']
 y_values = df_stroke['avg_glucose_level']
 z_values = df_stroke['bmi']
+
+#plot no-stroke patients
 ax.scatter(x_values, y_values, z_values, s=50, alpha=0.6, edgecolors='w')
 df_no_stroke = df[df['stroke'] == 0]
 x_values = df_no_stroke['age']
 y_values = df_no_stroke['avg_glucose_level']
 z_values = df_no_stroke['bmi']
+
 ax.scatter(x_values, y_values, z_values, c='red', s=50, alpha=0.6, edgecolors='w')
 ax.set_xlabel('Age (in years)')
-ax.set_ylabel('Average glucose level')
+ax.set_ylabel('Average glucose level (in g/cL)')
 ax.set_zlabel('BMI')
 
 plt.savefig("visualization_2.pdf")
