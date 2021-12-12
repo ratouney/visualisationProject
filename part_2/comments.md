@@ -21,10 +21,10 @@ Les 12 propriétés présentes dans le dataset sont :
 - le tabagisme
 - le fait que l'individu aie déjà eu un AVC
 
-De premier abord, on peut supposer que des mesures qui correspondent à conditions propices aux maladies en général (comme l'IMC, indicateur du surpoids ; la glycémie, indicative du diabète ; l'âge avancé) seront positivement corrélés avec la présence d'AVC.
+De premier abord, on peut supposer que des mesures qui correspondent aux conditions propices aux maladies en général (comme l'IMC, indicateur du surpoids ; la glycémie, indicative du diabète ; l'âge avancé) seront positivement corrélés avec la présence d'AVC.
 On peut aussi supposer que des facteurs extérieurs qui sont connus pour avoir un effet négatif sur la santé (le tabagisme, la pollution de l'air quand on habite en ville) présenteront aussi une corrélation avec la présence d'AVC.
 
-Le but de ce projet sera de prédire les AVC chez les patients à partir des différentes mesures afin de pouvoir les prévenir.
+Le but de ce projet sera de prédire des AVC possibles chez les patients à partir des paramètres qu'on a identifié comme des indicateurs de risque.
 
 ## Explication de l'analyse quantitative et de la visualisation
 
