@@ -34,5 +34,5 @@ df = df.iloc[range(range_start, range_end)]
 
 sn.scatterplot(data=df, x='age', y='avg_glucose_level', hue='stroke')
 
-plt.savefig("visualization_1.pdf")
+plt.savefig("figures/visualization_1.pdf")
 plt.close()

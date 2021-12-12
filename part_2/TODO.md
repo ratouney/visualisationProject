@@ -1,14 +1,14 @@
 # Analysis
 
-- [ ] convert notebook to python file
+- [X] convert notebook to python file
 discussion report
 
 # Visualisation
 - [X] save graphs in files
-- [ ] find better visualisation_1: parallel charts 
+- [ ] find better visualisation_1: parallel charts ?
 - [ ] customise command line options: chose features, chose axes, etc.
 - [X] add units in axes
-- [ ] add plot titles
+- [X] add plot titles
 
 # Quantitative analysis
 
@@ -36,4 +36,6 @@ Clustering or PCA
   - [ ] supervised
   - [ ] unsupervised
 - [ ] explanations on the visualisation
+  - [X] scatter plot
+  - [ ] PCA
 - [ ] comments on the results obtained.

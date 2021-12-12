@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 from tensorflow import keras
@@ -102,9 +103,9 @@ print(x_train.shape, y_train.shape)
 # build model
 
 model = Sequential()
-model.add(Dense(1, activation='relu', input_shape=(19,)))
+model.add(Dense(8, activation='relu', input_shape=(19,)))
 model.add(Dense(16, activation='relu'))
-# model.add(Dense(32, activation='relu'))
+model.add(Dense(32, activation='relu'))
 model.add(Dense(2, activation='softmax'))
 
 model.summary()
@@ -141,3 +142,40 @@ test_individual = np.array(x_test.iloc[0])
 test_individual.shape = (1, 19, 1)
 print(model.predict(test_individual))
 print(y_test.iloc[0])
+
+
+model.weights
+
+
+"""
+## Build linear model
+"""
+
+
+# build model
+
+model = Sequential()
+model.add(Dense(1, activation='linear', input_shape=(19,)))
+model.add(Dense(2, activation='softmax'))
+
+model.summary()
+
+model.compile(
+    optimizer='adam',  # Optimizer
+    # Loss function to minimize
+    loss='binary_crossentropy',
+    metrics=['accuracy', keras.metrics.Recall()]
+)
+
+model.fit(
+    x_train,
+    y_train,
+    epochs=10,
+    verbose=2,
+    batch_size=64
+)
+
+
+# evaluate on test set
+loss, acc, recall = model.evaluate(x_test, y_test)
+print(f'test loss = {loss}\ntest accuracy = {acc}\nrecall = {recall}')

@@ -22,7 +22,7 @@ DATA_PATH = args.f
 df = pd.read_csv(DATA_PATH)
 
 range_start = args.s if args.s else 0
-range_end = args.e if args.e else df.shape[0]
+range_end = args.e if args.e else 600
 
 if args.s and args.e and args.s >= args.e:
     print('Error: range start must be smaller than range end.')
@@ -36,22 +36,27 @@ fig = plt.figure(figsize=(15, 8))
 
 # plot stroke patients
 ax = fig.add_subplot(111, projection='3d')
-df_stroke = df[df['stroke'] == 1]
+df_stroke = df[df['stroke'] == 0]
 x_values = df_stroke['age']
 y_values = df_stroke['avg_glucose_level']
 z_values = df_stroke['bmi']
+ax.scatter(x_values, y_values, z_values, s=50, alpha=0.6, edgecolors='w', label='No stroke')
 
 #plot no-stroke patients
-ax.scatter(x_values, y_values, z_values, s=50, alpha=0.6, edgecolors='w')
-df_no_stroke = df[df['stroke'] == 0]
+df_no_stroke = df[df['stroke'] == 1]
 x_values = df_no_stroke['age']
 y_values = df_no_stroke['avg_glucose_level']
 z_values = df_no_stroke['bmi']
-
-ax.scatter(x_values, y_values, z_values, c='red', s=50, alpha=0.6, edgecolors='w')
+ax.scatter(x_values, y_values, z_values, c='red', s=50, alpha=0.6, edgecolors='w', label='Stroke')
 ax.set_xlabel('Age (in years)')
+
 ax.set_ylabel('Average glucose level (in g/cL)')
 ax.set_zlabel('BMI')
 
-plt.savefig("visualization_2.pdf")
+# add legend
+plt.legend()
+
+plt.title('BMI as a function of age and glycaemia')
+
+plt.savefig("figures/visualization_2.pdf")
 plt.close()
