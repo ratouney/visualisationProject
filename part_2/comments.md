@@ -80,6 +80,14 @@ On en conclut que les données sont séparables linéairement et qu'un modèle l
 
 ### Analyse non-supervisée : Clustering
 
+On a voulu regarder si il y avait un lien entre les différents paramètres pour déterminer la présence possible d'un AVC.
+Contrairement a une analyse supervisée, en utilisant du clustering on peut repérer des repérer des "tendances". 
+
+Dans le cas actuel, on ne peux que travailler avec des valeurs numériques (pas de catégories/classification) donc on va utiliser les
+collones "age", "bmi" et "avg_glucose_level".
+
+On va donc construire les "scatterplot" de chaque combinaison de paramètres pour voir si l'un d'entre eux est propice a une analyse en clustering. Une fois cette étape complétée, la combinaison glucose/bmi semble contenir 2 clusters identifiables.
+
 ## Commentaire sur les résultats obtenus
 
 En conclusion, le dat
