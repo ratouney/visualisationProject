@@ -38,7 +38,7 @@ Les taux de glycémies présentent une distribution bi-modale.
 
 ## Explication de l'analyse quantitative et de la visualisation
 
-### Visualisation en nuage de points
+### Visualisation 1 en nuage de points
 Le graphique en nuage de points est une technique de visualisation basique qui permet de d'avoir une vue d'ensemble du jeu de données.
 Elle convient mieux aux données numériques qu'aux données catégoriques. Pour cette raison, nous avons choisi de 
 représenter toutes les propriétés numériques du dataset : 
@@ -52,10 +52,19 @@ sélectionner manuellement les index des données à utiliser avec les options d
 Par rapport aux hypothèses initiales, on observe que les AVC sont bien corrélés avec l'âge, mais ils ne semblent pas corrélés avec
 l'IMC ou la glycémie d'après ce graphique.
 
+### Visualisation 2 : scatter matrix et clustering
 
-### Visualisation 2
+Afin de visualiser différemment et de faire apparaître la structure des données, nous avons effectué une scatter matrix
+des données. Dans ce cas, on ne peut que travailler avec des valeurs numériques (pas de catégories) on n'utilise donc que les
+colones "age", "bmi" et "avg_glucose_level".
 
-// TODO
+Les _scatterplots_ de chaque combinaison de paramètres semblent confirmer un lien entre l'âge et la présence d'AVC; de plus,
+ils montrent que la combinaison glucose/bmi semble contenir 2 clusters de points.
+
+Afin de tester la validité des clusters, nous avons exécuté l'algorithme de _k-means clustering_ sur ces paramètres.
+
+Pour avoir de l'aide sur comment exécuter l'algorithme de clustering, choisir les colonnes et les index de points à utiliser,
+appeler le script `visualisation_2.py` avec l'option `-h`
 
 ### Traitement des données
 
@@ -95,24 +104,11 @@ un set de test qui ne contient que des patients victimes d'AVC, on obtient bien 
 Pour pallier à ce problème il faudrait soit rééquilibrer le dataset en enrichissant par exemple avec la méthode SMOTE,
 soit utiliser une fonction de coût qui pénalise plus fortement une mauvaise prédiction sur un patient victime d'AVC.
 
-### Analyse non-supervisée : Clustering
-
-On a voulu regarder si il y avait un lien entre les différents paramètres pour déterminer la présence possible d'un AVC.
-Contrairement a une analyse supervisée, en utilisant du clustering on peut repérer des repérer des "tendances". 
-
-Dans le cas actuel, on ne peux que travailler avec des valeurs numériques (pas de catégories/classification) donc on va utiliser les
-collones "age", "bmi" et "avg_glucose_level".
-
-On va donc construire les "scatterplot" de chaque combinaison de paramètres pour voir si l'un d'entre eux est propice a une analyse en clustering. Une fois cette étape complétée, la combinaison glucose/bmi semble contenir 2 clusters identifiables.
-
-Quand on compare donc ce même cluster dans les cas avec un AVC et sans l'AVC (fichiers `scatterplotStroke.png` et `scatterplotAll.png`), il est présent dans les 2 situations, donc on ne peut pas le prendre en compte comme facteur impactant.
-
-Par contre, dans le cas du scatterplot ("avg_glucose_level"/"age"), on note une différence. Dans le cas des AVC présents, on ne trouve que très peu de valeurs en dessous de 50 alors qu'elles sont omniprésentes dans le cas général. La même observation peut être faite sur ("bmi"/"age").
-
-Si l'ont considère donc ces 2 plots qu'on vient de voir, on peut les combiner pour supposer que l'age aurait un impact sur la présence d'AVC ou non dans un cas unique.
-
 ## Commentaire sur les résultats obtenus
 
 En conclusion, nous avons utilisé deux méthodes pour visualiser le dataset : le nuage de points en 3d nous a permis de représenter
 4 dimensions des données efficacement ; la scatter matrix nous permet de représenter théoriquement une infinité de dimensions.
-Ces deux représentations nous ont permis d'avoir des données préliminaires sur la répartition des données. 
+Ces deux représentations nous ont permis d'avoir des données préliminaires sur la répartition des données.
+
+Les performances de l'algorithme de classification supervisé MLP ne sont pas satisfaisantes car les classes de la variable
+prédite ne sont pas balancées. 

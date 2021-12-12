@@ -1,35 +1,18 @@
 """
-2d scatter plot
+3d scatter plot
 """
 
 import argparse
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set()
-from sklearn.cluster import KMeans
+import seaborn as sn
 
 plt.style.use('seaborn')
-
-def str2bool(v):
-    if isinstance(v, bool):
-        return v
-    if v.lower() in ('yes', 'true', 't', 'y', '1'):
-        return True
-    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
-        return False
-    else:
-        raise argparse.ArgumentTypeError('Boolean value expected.')
 
 parser = argparse.ArgumentParser(description='Generate visualization from dataset.')
 parser.add_argument('-s', metavar='range_start', type=int, help='start of the selected range of points')
 parser.add_argument('-e', metavar='range_end', type=int, help='end of the selected range of points')
 parser.add_argument('-f', type=str, help='path to the data file.', default='./data.csv')
-parser.add_argument('-m', type=str2bool, nargs="?", help='generate scatter matrix', const=True, default=False)
-parser.add_argument('-x', type=str, help="column to use for axis X", default="avg_glucose_level")
-parser.add_argument('-y', type=str, help="column to use for axis Y", default="bmi")
-parser.add_argument('-k', type=int, help="KMeans cluster count",  default=5)
-parser.add_argument('-c', type=str, nargs="+", action="append", help="Columns to use in ScatterMatrix")
 
 args = parser.parse_args()
 print(args)
@@ -45,11 +28,10 @@ if args.s and args.e and args.s >= args.e:
     print('Error: range start must be smaller than range end.')
     exit(1)
 
-print(df.columns)
-
-cols = [col for col in df.columns if col not in ['id']]
+print(df.shape)
 
 df = df.iloc[range(range_start, range_end)]
+<<<<<<< Updated upstream
 df = df.dropna()
 df = df[cols]
 
@@ -73,4 +55,34 @@ else:
 
 plt.show()
 plt.savefig("figures/visualization_1.pdf")
+=======
+
+fig = plt.figure(figsize=(15, 8))
+
+# plot stroke patients
+ax = fig.add_subplot(111, projection='3d')
+df_stroke = df[df['stroke'] == 0]
+x_values = df_stroke['age']
+y_values = df_stroke['avg_glucose_level']
+z_values = df_stroke['bmi']
+ax.scatter(x_values, y_values, z_values, s=50, alpha=0.6, edgecolors='w', label='No stroke')
+
+#plot no-stroke patients
+df_no_stroke = df[df['stroke'] == 1]
+x_values = df_no_stroke['age']
+y_values = df_no_stroke['avg_glucose_level']
+z_values = df_no_stroke['bmi']
+ax.scatter(x_values, y_values, z_values, c='red', s=50, alpha=0.6, edgecolors='w', label='Stroke')
+ax.set_xlabel('Age (in years)')
+
+ax.set_ylabel('Average glucose level (in g/cL)')
+ax.set_zlabel('BMI')
+
+# add legend
+plt.legend()
+
+plt.title('BMI as a function of age and glycaemia')
+
+plt.savefig("figures/visualization_2.pdf")
+>>>>>>> Stashed changes
 plt.close()
