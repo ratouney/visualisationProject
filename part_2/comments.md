@@ -73,7 +73,7 @@ Les performances de ce premier modèle sont très bonnes : ~95% de précision et
 
 Pour voir si on peut alléger le modèle, on enlève une couche et on se rend compte que les mesures d'évaluation ne diminuent pas.
 On enlève une autre couche, puis on laisse une seule couche avec un seul neurone avec une fonction d'activation linéaire : 
-les performances sont toujours au même niveau. 
+les performances sont toujours au même niveau.
 
 Un unique perceptron avec une fonction d'activation linéaire est en fait un modèle linéaire. 
 On en conclut que les données sont séparables linéairement et qu'un modèle linéaire suffit pour prédire la présence d'un ACV chez un patient avec 95% d'exactitude.
@@ -81,3 +81,5 @@ On en conclut que les données sont séparables linéairement et qu'un modèle l
 ### Analyse non-supervisée : Clustering
 
 ## Commentaire sur les résultats obtenus
+
+En conclusion, le dat

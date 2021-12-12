@@ -26,16 +26,16 @@ MLP
 - [X] evaluate model
 
 ## Unsupervised
-Clustering or PCA
+- [ ] clustering
 
 ## Report
 - [X] dataset description
-- [ ] dataset analysis
-- [ ] data pre-processing description
+- [X] dataset analysis
+- [X] data pre-processing description
 - [ ] explanations on the quantitative processing
-  - [ ] supervised
+  - [X] supervised
   - [ ] unsupervised
 - [ ] explanations on the visualisation
   - [X] scatter plot
-  - [ ] PCA
+  - [ ] scatter matrix
 - [ ] comments on the results obtained.

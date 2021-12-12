@@ -5,7 +5,7 @@
 import argparse
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sn
+import seaborn as sns
 
 plt.style.use('seaborn')
 
@@ -22,7 +22,7 @@ DATA_PATH = args.f
 df = pd.read_csv(DATA_PATH)
 
 range_start = args.s if args.s else 0
-range_end = args.e if args.e else df.shape[0]
+range_end = args.e if args.e else 600
 
 if args.s and args.e and args.s >= args.e:
     print('Error: range start must be smaller than range end.')
@@ -30,9 +30,19 @@ if args.s and args.e and args.s >= args.e:
 
 print(df.columns)
 
-df = df.iloc[range(range_start, range_end)]
+cols = [col for col in df.columns if col not in ['id']]
 
-sn.scatterplot(data=df, x='age', y='avg_glucose_level', hue='stroke')
+df = df.iloc[range(range_start, range_end)]
+df = df[cols]
+
+f, axs = plt.subplots(len(df.columns), len(df.columns), figsize=(10, 10))
+
+i = 0
+for x in df.columns:
+    for y in df.columns:
+        sns.stripplot(data=df, x=x, y=y, ax=axs[i])
+        i += 1
+f.tight_layout()
 
 plt.savefig("figures/visualization_1.pdf")
 plt.close()
