@@ -105,6 +105,12 @@ collones "age", "bmi" et "avg_glucose_level".
 
 On va donc construire les "scatterplot" de chaque combinaison de paramètres pour voir si l'un d'entre eux est propice a une analyse en clustering. Une fois cette étape complétée, la combinaison glucose/bmi semble contenir 2 clusters identifiables.
 
+Quand on compare donc ce même cluster dans les cas avec un AVC et sans l'AVC (fichiers `scatterplotStroke.png` et `scatterplotAll.png`), il est présent dans les 2 situations, donc on ne peut pas le prendre en compte comme facteur impactant.
+
+Par contre, dans le cas du scatterplot ("avg_glucose_level"/"age"), on note une différence. Dans le cas des AVC présents, on ne trouve que très peu de valeurs en dessous de 50 alors qu'elles sont omniprésentes dans le cas général. La même observation peut être faite sur ("bmi"/"age").
+
+Si l'ont considère donc ces 2 plots qu'on vient de voir, on peut les combiner pour supposer que l'age aurait un impact sur la présence d'AVC ou non dans un cas unique.
+
 ## Commentaire sur les résultats obtenus
 
 En conclusion, nous avons utilisé deux méthodes pour visualiser le dataset : le nuage de points en 3d nous a permis de représenter
