@@ -4,8 +4,9 @@
 
 Le dataset présente des données médicales sur des patients qui ont eu ou non des accidents vasculaires-cérébraux (AVC). 
 Il provient de la plateforme [kaggle](https://www.kaggle.com/fedesoriano/stroke-prediction-dataset).
+Le but de ce projet sera de prédire les AVC chez les patients à partir des différentes mesures afin de pouvoir les prévenir.
 
-Il contient des informations sur 5110 patients ; certaines colonnes ont des données manquantes (4909 lignes complètes).
+Le dataset contient des informations sur 5110 patients ; certaines colonnes ont des données manquantes (4909 lignes complètes).
 
 Les 12 propriétés présentes dans le dataset sont : 
 - un id unique pour chaque patient
@@ -21,10 +22,19 @@ Les 12 propriétés présentes dans le dataset sont :
 - le tabagisme
 - le fait que l'individu aie déjà eu un AVC
 
-De premier abord, on peut supposer que des mesures qui correspondent aux conditions propices aux maladies en général (comme l'IMC, indicateur du surpoids ; la glycémie, indicative du diabète ; l'âge avancé) seront positivement corrélés avec la présence d'AVC.
-On peut aussi supposer que des facteurs extérieurs qui sont connus pour avoir un effet négatif sur la santé (le tabagisme, la pollution de l'air quand on habite en ville) présenteront aussi une corrélation avec la présence d'AVC.
+## Analyse préliminaire du dataset
 
-Le but de ce projet sera de prédire des AVC possibles chez les patients à partir des paramètres qu'on a identifié comme des indicateurs de risque.
+De premier abord, on peut supposer que des mesures qui correspondent à conditions propices aux maladies en général 
+(comme l'IMC, indicateur du surpoids ; la glycémie, indicative du diabète ; l'âge avancé) seront positivement corrélés avec la présence d'AVC.
+On peut aussi supposer que des facteurs extérieurs qui sont connus pour avoir un effet négatif sur la santé 
+(le tabagisme, la pollution de l'air quand on habite en ville) présenteront aussi une corrélation avec la présence d'AVC.
+
+La visualisation par histogramme des différentes propriétés du dataset montrent que pour les variables catégoriques, toutes
+les catégories sont assez équitablement représentées (âge, genre, présence de maladies cardiaques, type d'emploi, type de 
+résidence). Seul la variable prédite, la présence ou non d'AVC chez un patient, est fortement déséquilibré en faveur des patients 
+non-victimes d'AVC.
+
+Les taux de glycémies présentent une distribution bi-modale. 
 
 ## Explication de l'analyse quantitative et de la visualisation
 
@@ -76,10 +86,19 @@ On enlève une autre couche, puis on laisse une seule couche avec un seul neuron
 les performances sont toujours au même niveau.
 
 Un unique perceptron avec une fonction d'activation linéaire est en fait un modèle linéaire. 
-On en conclut que les données sont séparables linéairement et qu'un modèle linéaire suffit pour prédire la présence d'un ACV chez un patient avec 95% d'exactitude.
+Nous avons d'abord conclu que les données sont séparables linéairement et qu'un modèle linéaire suffit pour prédire la présence d'un ACV chez un patient avec 95% d'exactitude.
+
+Mais nous avons vu lors de l'analyse préliminaire du dataset que la classe "AVC" était largement sous-représentée.
+Nous en concluons que le modèle a simplement appris à prédire systématiquement une absence d'AVC. En testant le modèle sur 
+un set de test qui ne contient que des patients victimes d'AVC, on obtient bien une exactitude et un rappel de 0. 
+
+Pour pallier à ce problème il faudrait soit rééquilibrer le dataset en enrichissant par exemple avec la méthode SMOTE,
+soit utiliser une fonction de coût qui pénalise plus fortement une mauvaise prédiction sur un patient victime d'AVC.
 
 ### Analyse non-supervisée : Clustering
 
 ## Commentaire sur les résultats obtenus
 
-En conclusion, le dat
+En conclusion, nous avons utilisé deux méthodes pour visualiser le dataset : le nuage de points en 3d nous a permis de représenter
+4 dimensions des données efficacement ; la scatter matrix nous permet de représenter théoriquement une infinité de dimensions.
+Ces deux représentations nous ont permis d'avoir des données préliminaires sur la répartition des données. 
