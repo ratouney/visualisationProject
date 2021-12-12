@@ -55,6 +55,7 @@ df = df[cols]
 
 if args.m == True:
     pd.plotting.scatter_matrix(df, alpha=1)
+    plt.title("ScatterMatrix of the columns")
 else:
     selectedDf = df[[args.x, args.y]]
     kmeans = KMeans(args.k)
@@ -62,7 +63,9 @@ else:
     identified_clusters = kmeans.fit_predict(selectedDf)
     print(identified_clusters)
     data_with_clusters = selectedDf.copy()
-    data_with_clusters['Clusters'] = identified_clusters 
+    data_with_clusters['Clusters'] = identified_clusters
+    title = f'KMeans[{args.k}] Clustering of {args.x}/{args.y}'
+    plt.title(title)
     #plt.scatter(data_with_clusters['avg_glucose_level'],data_with_clusters['bmi'],c=data_with_clusters['Clusters'],cmap='rainbow')
     sns.scatterplot(data_with_clusters[args.x],data_with_clusters[args.y],c=data_with_clusters['Clusters'],cmap='rainbow', marker="o")
     plt.xlabel(args.x)
